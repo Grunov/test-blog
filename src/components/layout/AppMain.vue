@@ -14,7 +14,7 @@ export default {
 
 <style lang="scss" scoped>
     .app-main {
-        padding: $verticalPadding 0;
+        padding: 40px 0;
         min-height: calc(100vh - (40px * 2));
     }
 </style>
