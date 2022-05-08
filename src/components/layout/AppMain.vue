@@ -17,6 +17,6 @@ export default {
         $verticalPadding: 40px;
 
         padding: $verticalPadding 0;
-        min-height: calc(100vh - $verticalPadding * 2);
+        min-height: calc(100vh - ($verticalPadding * 2));
     }
 </style>
