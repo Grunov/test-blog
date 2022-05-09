@@ -26,8 +26,9 @@ export default {
         updatePost({commit}, post) {
             commit('_updatePost', post);
         },
-        deletePost({commit}, postId) {
+        deletePost({commit, dispatch}, postId) {
             commit('_deletePost', postId);
+            dispatch('commentsModule/deleteCommentsByPostId', postId, {root:true});
         }
     },
     getters: {

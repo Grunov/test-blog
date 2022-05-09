@@ -11,6 +11,10 @@ export default {
         _deleteComment(state, commentId) {
             state.comments = state.comments.filter(comment => comment.id !== commentId);
             localStorage.setItem('comments', JSON.stringify(state.comments));
+        },
+        _deleteCommentsByPostId(state, postId) {
+            state.comments = state.comments.filter(comment => comment.postId !== postId);
+            localStorage.setItem('comments', JSON.stringify(state.comments));
         }
     },
     actions: {
@@ -19,6 +23,9 @@ export default {
         },
         deleteComment({commit}, commetId) {
             commit('_deleteComment', commetId);
+        },
+        deleteCommentsByPostId({commit}, postId) {
+            commit('_deleteCommentsByPostId', postId);
         }
     },
     getters: {
