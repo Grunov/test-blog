@@ -4,6 +4,8 @@ import Home from '@/views/Home.vue';
 import Post from '@/views/Post.vue';
 import AddPost from '@/views/AddPost.vue';
 import EditPost from '@/views/EditPost.vue';
+import NotFound from '@/views/NotFound.vue';
+
 
 Vue.use(VueRouter)
 
@@ -29,7 +31,12 @@ const routes = [
     name: 'EditPost',
     component: EditPost,
     props: true
-  }
+  },
+  {
+    path: '*',
+    name: 'NotFound',
+    component: NotFound,
+  },
 ]
 
 const router = new VueRouter({

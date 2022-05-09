@@ -3,49 +3,19 @@
     <h1 class="edit__title">
       Редактирование записи
     </h1>
-    <form @submit.prevent="submitHandler">
-
-      <label>
-        Заголовок
-      </label>
-      <input 
-        type="text" 
-        v-model="post.title"
-        class="form-input"
-      >
-
-      <label>
-        Краткое описание
-      </label>
-      <textarea 
-        type="text" 
-        v-model="post.description"
-        class="form-input"
-      />
-
-      <label>
-        Текст
-      </label>
-      <textarea 
-        type="text" 
-        v-model="post.text"
-        class="form-input"
-      />
-
-      <button 
-        type="submit"
-        class="button"
-      >
-        Сохранить
-      </button>
-
-    </form>
+    <post-form 
+      :post="this.post"
+      :submit-call="updatePost"
+      :submit-route="{path: `/post/${this.id}`}"
+      class="add-post__form"
+    />
   </app-layout>
 </template>
 
 <script>
 import AppLayout from "@/layouts/AppLayout.vue";
 import {mapActions} from "vuex";
+import PostForm from '../components/ui/PostForm.vue';
 
 export default {
   name: "EditPost",
@@ -63,14 +33,11 @@ export default {
   methods: {
     ...mapActions({
       updatePost: 'postsModule/updatePost'
-    }),
-    submitHandler() {
-      this.updatePost(this.post);
-      this.$router.push({path: `/post/${this.id}`})
-    }
+    })
   },
   components: {
     AppLayout,
+    PostForm
   },
 };
 </script>

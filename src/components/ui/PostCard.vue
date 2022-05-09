@@ -1,5 +1,8 @@
 <template>
-    <article class="post-card">
+    <card
+        tag="article" 
+        class="post-card"
+    >
         <header class="post-card__header">
             <router-link 
                 :to="`/edit-post/${post.id}`"
@@ -34,11 +37,12 @@
                 Подробнее...
             </router-link>
         </div>
-    </article>
+    </card>
 </template>
 
 <script>
 import {mapActions} from 'vuex';
+import Card from '@/components/shared/Card.vue';
 
 export default {
     name: 'PostCard',
@@ -57,17 +61,15 @@ export default {
         ...mapActions({
             deletePost: 'postsModule/deletePost'
         })
+    },
+    components: {
+        Card
     }
 }
 </script>
 
 <style lang="scss" scoped>
     .post-card {
-        width: 100%;
-        box-shadow: 0 0 .5rem #3f51b575;
-        border-radius: .25rem;
-        padding: 1rem;
-
         &__header {
             display: flex;
             align-items: center;

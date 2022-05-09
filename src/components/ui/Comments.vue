@@ -2,36 +2,59 @@
     <div class="comments">
         <h2 class="comments__title">
             Комментарии    
-        </h2>    
-        <form
-            @submit.prevent="submitHandler" 
-            class="comments__form"
-            ref="form"
-        >
-            <label>
-                Имя автора
-            </label>
-            <input 
-                type="text" 
-                v-model="form.author"
-                class="form-input"
-            />
-
-            <label>
-                Текст
-            </label>
-            <textarea 
-                type="text" 
-                v-model="form.text"
-                class="form-input"
-            />
-            <button 
-                type="submit"
-                class="button"
+        </h2>
+        <card class="comments__form-card">    
+            <form
+                @submit.prevent="submitHandler" 
+                class="comments__form"
+                ref="form"
             >
-                Добавить
-            </button>
-        </form>
+                <div class="form-groupe">
+                    <label>
+                        Имя автора
+                    </label>
+                    <input 
+                        type="text" 
+                        v-model="form.author"
+                        class="form-input"
+                    />
+                    <div v-if="$v.form.author.$error">
+                        <div 
+                            class="form-error" 
+                            v-if="!$v.form.author.required"
+                        >
+                            Обязательно для заполнения
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-groupe">
+                    <label>
+                        Текст
+                    </label>
+                    <textarea 
+                        type="text" 
+                        v-model="form.text"
+                        class="form-input"
+                    />
+                    <div v-if="$v.form.text.$error">
+                        <div 
+                            class="form-error" 
+                            v-if="!$v.form.text.required"
+                        >
+                            Обязательно для заполнения
+                        </div>
+                    </div>
+                </div>
+
+                <button 
+                    type="submit"
+                    class="button"
+                >
+                    Добавить
+                </button>
+            </form>
+        </card>
         <div class="comments__list">
             <transition-group name="list">
                 <comment-card 
@@ -47,9 +70,11 @@
 
 
 <script>
+import { required } from 'vuelidate/lib/validators';
 import { v4 as uuidv4 } from 'uuid';
 import {mapActions} from "vuex";
 import CommentCard from '@/components/ui/CommentCard.vue';
+import Card from '@/components/shared/Card.vue';
 
 const defaultForm = () => {
     return {
@@ -61,7 +86,7 @@ const defaultForm = () => {
 }
 
 export default {
-  components: { CommentCard },
+  components: { CommentCard, Card },
     name: 'Comments',
     props: {
         postId: {
@@ -76,6 +101,16 @@ export default {
     data: () => ({
         form: defaultForm()
     }),
+    validations: {
+        form: {
+            author: {
+                required
+            },
+            text: {
+                required
+            }
+        }
+    },
     mounted() {
         this.form.postId = this.postId
     },
@@ -84,8 +119,12 @@ export default {
             addComment: 'commentsModule/addComment'
         }),
         submitHandler() {
-            this.addComment(this.form);
-            this.form = defaultForm();
+            this.$v.$touch();
+            if(!this.$v.$invalid) {
+                this.addComment(this.form);
+                this.form = defaultForm();
+                this.$v.$reset();
+            }
         }
     }
 }
@@ -94,12 +133,12 @@ export default {
 <style lang="scss" scoped>
     .comments {
 
+        &__form-card {
+            margin-bottom: 20px;
+        }
+
         &__form {
             width: 100%;
-            box-shadow: 0 0 .5rem #3f51b575;
-            border-radius: .25rem;
-            padding: 1rem;
-            margin-bottom: 20px;
         }
 
         &__list {

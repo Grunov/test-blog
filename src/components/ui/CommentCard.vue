@@ -1,5 +1,5 @@
 <template>
-    <div class="comment-card">
+    <card class="comment-card">
         <div class="comment-card__header">
             <h4 class="comment-card__author">
                 {{ comment.author }}
@@ -14,11 +14,12 @@
         <p class="comment-card__text">
             {{ comment.text }}
         </p>
-    </div>
+    </card>
 </template>
 
 <script>
 import { mapActions } from 'vuex';
+import Card from '@/components/shared/Card.vue';
 
 export default {
     name: 'CommentCard',
@@ -32,6 +33,9 @@ export default {
         ...mapActions({
             deleteComment: 'commentsModule/deleteComment'
         })
+    },
+    components: {
+        Card
     }
 }
 </script>
