@@ -3,7 +3,7 @@
         <h2 class="comments__title">
             Комментарии    
         </h2>
-        <card class="comments__form-card">    
+        <ui-card class="comments__form-card">    
             <form
                 @submit.prevent="submitHandler" 
                 class="comments__form"
@@ -47,14 +47,11 @@
                     </div>
                 </div>
 
-                <button 
-                    type="submit"
-                    class="button"
-                >
+                <ui-button type="submit">
                     Добавить
-                </button>
+                </ui-button>
             </form>
-        </card>
+        </ui-card>
         <div class="comments__list">
             <transition-group name="list">
                 <comment-card 
@@ -74,7 +71,6 @@ import { required } from 'vuelidate/lib/validators';
 import { v4 as uuidv4 } from 'uuid';
 import {mapActions} from "vuex";
 import CommentCard from '@/components/ui/CommentCard.vue';
-import Card from '@/components/shared/Card.vue';
 
 const defaultForm = () => {
     return {
@@ -86,7 +82,7 @@ const defaultForm = () => {
 }
 
 export default {
-  components: { CommentCard, Card },
+  components: { CommentCard },
     name: 'Comments',
     props: {
         postId: {

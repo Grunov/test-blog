@@ -64,20 +64,6 @@ textarea {
     color: #FF5252;
 }
 
-.button {
-    background-color: #3f51b5;
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    border-radius: .25rem;
-    cursor: pointer;
-
-    &:hover,
-    &:focus {
-        background-color: #3f51b575;
-    }
-}
-
 .list-enter-active,
 .list-leave-active,
 .list-move {

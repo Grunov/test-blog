@@ -59,12 +59,9 @@
         </div>
       </div>
 
-      <button 
-        type="submit"
-        class="button"
-      >
+      <ui-button type="submit">
         Сохранить
-      </button>
+      </ui-button>
 
     </form>
   </div>

@@ -18,9 +18,9 @@
         class="home__empty"
       >
         <p>Тут пока нету записей.</p>
-        <button class="button" @click="initData">
+        <ui-button class="button" @click="initData">
           Добавить посты в localStorage
-        </button>
+        </ui-button>
       </section>
   </app-layout>
 </template>
@@ -29,6 +29,7 @@
 import AppLayout from '@/layouts/AppLayout.vue';
 import PostCard from '@/components/ui/PostCard.vue';
 import { mapGetters } from 'vuex'; 
+
 import posts from '@/posts.json';
 import comments from '@/comments.json';
 
