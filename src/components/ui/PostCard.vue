@@ -1,20 +1,15 @@
 <template>
-    <card
+    <ui-card 
         tag="article" 
         class="post-card"
     >
         <header class="post-card__header">
-            <router-link 
-                :to="`/edit-post/${post.id}`"
-                class="button"
-            >
+            <ui-button :to="{ path: `/edit-post/${post.id}` }">
                 Редактировать
-            </router-link>
-            <button 
-                @click="deletePost(post.id)"
-                class="button">
+            </ui-button>
+            <ui-button @click="deletePost(post.id)">
                 Удалить
-            </button>
+            </ui-button>
         </header>
             <div class="post-card__body">
                 <h4 class="post-card__title">
@@ -30,19 +25,18 @@
             </p>
         </div>
         <div class="post-card__foooter">
-            <router-link 
+            <ui-button 
                 :to="`post/${post.id}`"
                 class="post-card__more"
             >
                 Подробнее...
-            </router-link>
+            </ui-button>
         </div>
-    </card>
+    </ui-card>
 </template>
 
 <script>
 import {mapActions} from 'vuex';
-import Card from '@/components/shared/Card.vue';
 
 export default {
     name: 'PostCard',
@@ -61,9 +55,6 @@ export default {
         ...mapActions({
             deletePost: 'postsModule/deletePost'
         })
-    },
-    components: {
-        Card
     }
 }
 </script>

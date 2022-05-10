@@ -1,25 +1,24 @@
 <template>
-    <card class="comment-card">
+    <ui-card class="comment-card">
         <div class="comment-card__header">
             <h4 class="comment-card__author">
                 {{ comment.author }}
             </h4>
-            <button 
+            <ui-button 
                 @click="deleteComment(comment.id)"
-                class="comment-card__delete button"
+                class="comment-card__delete"
             >
                 Удалить
-            </button>
+            </ui-button>
         </div>
         <p class="comment-card__text">
             {{ comment.text }}
         </p>
-    </card>
+    </ui-card>
 </template>
 
 <script>
 import { mapActions } from 'vuex';
-import Card from '@/components/shared/Card.vue';
 
 export default {
     name: 'CommentCard',
@@ -33,9 +32,6 @@ export default {
         ...mapActions({
             deleteComment: 'commentsModule/deleteComment'
         })
-    },
-    components: {
-        Card
     }
 }
 </script>
